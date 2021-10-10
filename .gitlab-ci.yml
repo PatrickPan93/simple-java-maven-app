@@ -17,12 +17,23 @@ build:
     - master
   script:
     - mvn clean
+    - mvn test
     - mvn install
   cache:
       key: ${CI_COMMIT_REF_SLUG}
       paths:
        - target/*.jar
       policy: push
+  artifacts:
+    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    when: on_success
+    expose_as: 'release artifact'
+    paths:
+      - target/*.jar
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+
 deploy:
   stage: deploy
   only:
