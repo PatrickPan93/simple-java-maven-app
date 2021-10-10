@@ -27,7 +27,6 @@ build:
   artifacts:
     name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
     when: on_success
-    expose_as: 'release artifact'
     paths:
       - target/*.jar
     reports:
