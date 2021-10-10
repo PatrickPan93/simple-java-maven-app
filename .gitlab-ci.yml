@@ -18,11 +18,16 @@ build:
   script:
     - mvn clean
     - mvn install
-
+cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - target/*.jar
 deploy:
   stage: deploy
   only:
     - master
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
   script:
     - echo "hello deploy"
     - java -jar target/my-app-1.0-SNAPSHOT.jar
