@@ -28,6 +28,8 @@ deploy:
     - master
   cache:
     key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - target/
   script:
     - echo "hello deploy"
     - java -jar target/my-app-1.0-SNAPSHOT.jar
