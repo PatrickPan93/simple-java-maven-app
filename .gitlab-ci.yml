@@ -3,6 +3,7 @@ image:
   entrypoint: ["/bin/sh","-c"]
 
 before_scripts:
+  stage: .pre
   script:
     - mvn -v
 
@@ -13,7 +14,7 @@ stages:
 build:
   stage: build
   only:
-  - master
+    - master
   script:
     - mvn clean
     - mvn install
