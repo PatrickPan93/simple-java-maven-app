@@ -18,10 +18,10 @@ build:
   script:
     - mvn clean
     - mvn install
-cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - target/*.jar
+  cache:
+      key: ${CI_COMMIT_REF_SLUG}
+      paths:
+       - target/*.jar
 deploy:
   stage: deploy
   only:
