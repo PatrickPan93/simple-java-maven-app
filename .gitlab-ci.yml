@@ -30,7 +30,8 @@ deploy:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
       - target/
-    policy: push
+    # means pull something from cache only
+    policy: pull
   script:
     - echo "hello deploy"
     - java -jar target/my-app-1.0-SNAPSHOT.jar
