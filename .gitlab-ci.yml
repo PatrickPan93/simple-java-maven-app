@@ -1,29 +1,10 @@
 stages:
-  - build
-  - test
   - deploy
 
-module-a-build:
-  stage: build
+deploy:
+  stage: deploy
   script:
-    - echo "hello3a"
-    - sleep 10
-
-module-b-build:
-  stage: build
-  script:
-    - echo "hell3b"
-    - sleep 20
-
-module-a-test:
-  stage: test
-  script:
-    - echo "hello3a"
-    - sleep 5
-  needs: ["module-a-build"]
-module-b-test:
-  stage: test
-  script:
-    - echo "hello3b"
-    - sleep 5
-  needs: ["module-b-build"]
+    - echo "deploy"
+  environment:
+    name: dev
+    url: https://www.baidu.com
