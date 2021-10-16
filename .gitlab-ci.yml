@@ -1,10 +1,4 @@
-stages:
-  - deploy
-
-deploy:
-  stage: deploy
-  script:
-    - echo "deploy"
-  environment:
-    name: dev
-    url: https://www.baidu.com
+include:
+  project: 'devops/gitlab-ci'
+  ref: master
+  file: 'templates/java-pipeline.yml'
