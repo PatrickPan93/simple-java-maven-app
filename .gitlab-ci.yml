@@ -1,48 +1,30 @@
-image:
-  name: maven:3.8.3-jdk-8
-  entrypoint: ["/bin/sh","-c"]
-
-before_scripts:
-  stage: .pre
-  script:
-    - mvn -v
-
 stages:
   - build
-  - deploy
+  - test
+  -	deploy
 
-build:
+module-a-build:
   stage: build
-  only:
-    - master
   script:
-    - mvn clean
-    - mvn test
-    - mvn install
-  cache:
-      key: ${CI_COMMIT_REF_SLUG}
-      paths:
-       - target/*.jar
-      policy: push
-  artifacts:
-    name: "$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
-    when: on_success
-    paths:
-      - target/*.jar
-    reports:
-      junit:
-        - target/surefire-reports/TEST-*.xml
+    -	echo "hello3a"
+    - sleep 10
 
-deploy:
-  stage: deploy
-  only:
-    - master
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - target/
-    # means pull something from cache only
-    policy: pull
+module-b-build:
+  stage: build
   script:
-    - echo "hello deploy"
-    - java -jar target/my-app-1.0-SNAPSHOT.jar
+    -	echo "hell3b"
+    - sleep 20
+
+module-a-test:
+  stage: test
+  script:
+    - echo "hello3a"
+    -	sleep 5
+  needs: ["module-a-build"]
+
+module-b-test:
+  stage: test
+  script:
+    - echo "hello3b"
+    -	sleep 5
+  needs: ["module-b-build"]
