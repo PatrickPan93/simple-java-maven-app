@@ -11,6 +11,5 @@ include:
 #  BUILD_SHELL: 'mvn clean package -DskipTests'
 #  BUILD_IMAGE: 'maven:3.8.3-jdk-8'
 
-
 #  TEST_SHELL: 'mvn test'
 #  TEST_IMAGE: 'maven:3.8.3-jdk-8'
